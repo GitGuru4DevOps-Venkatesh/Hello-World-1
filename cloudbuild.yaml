@@ -5,11 +5,9 @@ steps:
 - name: 'gcr.io/cloud-builders/mvn:3.3.9-jdk-8'
   args: ['install']
   dir: 'game-of-life/gameoflife-build/'
-   # build the container image
+  # build the container image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "gcr.io/noble-feat-382600/game:v5", "."]
+  args: ["build", "-t", "gcr.io/wired-tea-401110:v1", "."]
   # push container image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["push", "gcr.io/noble-feat-382600/game:v5"]
-
-
+  args: ["push", "gcr.io/wired-tea-401110/helloworld:v1"]
