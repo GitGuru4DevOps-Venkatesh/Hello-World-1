@@ -4,21 +4,17 @@ pipeline {
   tools {
     jdk 'Java'
     maven 'Maven'
-  }
-  
+  } 
   environment {
-
       sonar_url = 'http://10.128.0.5:9000'
       sonar_username = 'admin'
       sonar_password = 'admin'
       nexus_url = '10.128.0.4:8081'
       artifact_version = '1.0.0'
-
  }
  parameters {
       string(defaultValue: 'main', description: 'Please type any branch name to deploy', name: 'Branch')
  }  
-
 stages {
     stage('Git checkout'){
       steps {
@@ -34,9 +30,7 @@ stages {
   stage ('Sonarqube Analysis'){
            steps {
            withSonarQubeEnv('Sonarqube') {
-           sh '''
-           mvn -e -B sonar:sonar -Dsonar.java.source=1.8 -Dsonar.host.url="${sonar_url}" -Dsonar.login="${sonar_username}" -Dsonar.password="${sonar_password}" -Dsonar.sourceEncoding=UTF-8
-           '''
+           sh 'mvn -e -B sonar:sonar -Dsonar.java.source=1.8 -Dsonar.host.url="${sonar_url}" -Dsonar.login="${sonar_username}" -Dsonar.password="${sonar_password}" -Dsonar.sourceEncoding=UTF-8'
            }
          }
       } 
