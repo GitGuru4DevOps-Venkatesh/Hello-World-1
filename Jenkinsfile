@@ -49,9 +49,9 @@ stages {
       }
       stage ('Publish Docker Image'){
         steps {
-          sh '''
+          sh '
           docker push gcr.io/fleet-impact-392712/helloworld
-          '''
+          '
         }
       }
       stage ('Deploy to kubernetes'){
